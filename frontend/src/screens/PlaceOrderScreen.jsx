@@ -1,18 +1,10 @@
 import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-<<<<<<< HEAD
 import { toast } from "react-toastify";
 import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import Message from "../components/Message";
 import CheckoutSteps from "../components/CheckoutSteps";
-=======
-import { useSelector, useDispatch } from "react-redux";
-import { Button, Row, Col, ListGroup, Image, Card } from "react-bootstrap";
-import { toast } from "react-toastify";
-import CheckoutSteps from "../components/CheckoutSteps";
-import Message from "../components/Message";
->>>>>>> 8ded8bd4a0a921698b38263c264f894e7bf02893
 import Loader from "../components/Loader";
 import { useCreateOrderMutation } from "../slices/ordersApiSlice";
 import { clearCartItems } from "../slices/cartSlice";
@@ -33,7 +25,6 @@ const PlaceOrderScreen = () => {
   }, [cart.paymentMethod, cart.shippingAddress.address, navigate]);
 
   const dispatch = useDispatch();
-<<<<<<< HEAD
   const placeOrderHandler = async () => {
     try {
       const res = await createOrder({
@@ -55,33 +46,6 @@ const PlaceOrderScreen = () => {
   return (
     <>
       <CheckoutSteps step1 step2 step3 step4 />
-=======
-
-  const placeOrderHandler = async () => {
-    try {
-      const res = await createOrder({
-        orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
-        shippingPrice: cart.shippingPrice,
-        taxPrice: cart.taxPrice,
-        totalPrice: cart.totalPrice,
-      }).unwrap();
-      dispatch(clearCartItems())
-      navigate(`/order/${res._id}`);
-      console.log(res,"respondse")
-    } catch (error) {
-      toast.error(error);
-    }
-
-  };
-
-  return (
-    <>
-      <CheckoutSteps step1 step2 step3 step4 />
-
->>>>>>> 8ded8bd4a0a921698b38263c264f894e7bf02893
       <Row>
         <Col md={8}>
           <ListGroup variant="flush">
@@ -89,7 +53,6 @@ const PlaceOrderScreen = () => {
               <h2>Shipping</h2>
               <p>
                 <strong>Address:</strong>
-<<<<<<< HEAD
                 {cart.shippingAddress.address}, {cart.shippingAddress.city}{" "}
                 {cart.shippingAddress.postalCode},{" "}
                 {cart.shippingAddress.country}
@@ -102,17 +65,6 @@ const PlaceOrderScreen = () => {
               {cart.paymentMethod}
             </ListGroup.Item>
 
-=======
-                {cart.shippingAddress.address},{cart.shippingAddress.city},
-                {cart.shippingAddress.postalCode},{cart.shippingAddress.country}
-              </p>
-            </ListGroup.Item>
-            <ListGroup.Item>
-              <h2>Paymet Method</h2>
-              <strong>Method: </strong>
-              {cart.paymentMethod}
-            </ListGroup.Item>
->>>>>>> 8ded8bd4a0a921698b38263c264f894e7bf02893
             <ListGroup.Item>
               <h2>Order Items</h2>
               {cart.cartItems.length === 0 ? (
@@ -131,21 +83,13 @@ const PlaceOrderScreen = () => {
                           />
                         </Col>
                         <Col>
-<<<<<<< HEAD
                           <Link to={`/product/${item.product}`}>
-=======
-                          <Link to={`/products/${item.product}`}>
->>>>>>> 8ded8bd4a0a921698b38263c264f894e7bf02893
                             {item.name}
                           </Link>
                         </Col>
                         <Col md={4}>
-<<<<<<< HEAD
                           {item.qty} x ${item.price} = $
                           {(item.qty * (item.price * 100)) / 100}
-=======
-                          {item.qty} x ${item.price} = ${item.qty * item.price}
->>>>>>> 8ded8bd4a0a921698b38263c264f894e7bf02893
                         </Col>
                       </Row>
                     </ListGroup.Item>
@@ -163,62 +107,38 @@ const PlaceOrderScreen = () => {
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-<<<<<<< HEAD
                   <Col>Items</Col>
-=======
-                  <Col>Items:</Col>
->>>>>>> 8ded8bd4a0a921698b38263c264f894e7bf02893
                   <Col>${cart.itemsPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-<<<<<<< HEAD
                   <Col>Shipping</Col>
-=======
-                  <Col>Shipping:</Col>
->>>>>>> 8ded8bd4a0a921698b38263c264f894e7bf02893
                   <Col>${cart.shippingPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-<<<<<<< HEAD
                   <Col>Tax</Col>
-=======
-                  <Col>Tax:</Col>
->>>>>>> 8ded8bd4a0a921698b38263c264f894e7bf02893
                   <Col>${cart.taxPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
                 <Row>
-<<<<<<< HEAD
                   <Col>Total</Col>
-=======
-                  <Col>Total:</Col>
->>>>>>> 8ded8bd4a0a921698b38263c264f894e7bf02893
                   <Col>${cart.totalPrice}</Col>
                 </Row>
               </ListGroup.Item>
               <ListGroup.Item>
-<<<<<<< HEAD
                 {error && (
                   <Message variant="danger">{error.data.message}</Message>
                 )}
-=======
-                {error && <Message variant="danger">{error.data.message}</Message>}
->>>>>>> 8ded8bd4a0a921698b38263c264f894e7bf02893
               </ListGroup.Item>
               <ListGroup.Item>
                 <Button
                   type="button"
                   className="btn-block"
-<<<<<<< HEAD
                   disabled={cart.cartItems === 0}
-=======
-                  disabled={cart.cartItems.length === 0}
->>>>>>> 8ded8bd4a0a921698b38263c264f894e7bf02893
                   onClick={placeOrderHandler}
                 >
                   Place Order
