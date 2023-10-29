@@ -31,6 +31,7 @@ const addOrderItems = asyncHandler(async (req, res) => {
       taxPrice,
       shippingPrice,
       totalPrice,
+      user:req.user._id
     });
 
     const createOrder = await order.save();
