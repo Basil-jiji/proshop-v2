@@ -12,13 +12,14 @@ export const updateCart = (state) => {
   state.shippingPrice = addDecimals(state.itemsPrice > 100 ? 0 : 10);
 
   //Calculate tax price (15% tax)
-  state.taxPrice = addDecimals(Number((0.15 * state.itemsprice).toFixed(2)));
+  state.taxPrice = addDecimals(Number((0.15 * state.itemsPrice).toFixed(2)));
 
   //Calculate total price
-  state.totalPrice =
+  state.totalPrice = (
     Number(state.itemsPrice) +
     Number(state.shippingPrice) +
-    Number(state.taxPrice).toFixed(2);
+    Number(state.taxPrice)
+  ).toFixed(2);
 
   localStorage.setItem('cart', JSON.stringify(state));
 
