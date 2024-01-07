@@ -1,4 +1,5 @@
 import path from 'path';
+import cors from 'cors';
 import express from 'express';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
@@ -16,6 +17,7 @@ connectDB();
 
 const app = express();
 
+app.use(cors());
 //Body Parser Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
